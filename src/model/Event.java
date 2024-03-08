@@ -51,7 +51,7 @@ public class Event {
         System.out.print("Enter the event description: ");
         this.setDescription(input.nextLine());
     }
-    public void dateEvent(){
+    private void dateEvent(){
         Scanner input = new Scanner(System.in);
         Calendar date = Calendar.getInstance();
         System.out.println("Enter the event year : ");
@@ -69,7 +69,7 @@ public class Event {
         this.setEventDate("Evente Date: " + month + "/" + day + "/"+year + "\nHour: "+hour+"h"+min+"min");
         
     }
-    public void categorization(){
+    private void categorization(){
         Scanner input = new Scanner(System.in);
         while (this.getCategory().equals("")){
             System.out.println("Inform the event category: \nParty\nConcert\nSport\nConference\nCultural");
@@ -107,7 +107,11 @@ public class Event {
         
     }
     public void finishEvent(){
-        
+        Calendar userDate  = Calendar.getInstance();
+        userDate.getTime(System.in);
+        if(userDate.after(this.getEventHour())){
+        this.setDone(true);
+        }
     }
     
     //GETTERS AND SETTERS
@@ -165,5 +169,4 @@ public class Event {
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
-    
 }
