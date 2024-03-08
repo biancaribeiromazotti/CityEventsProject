@@ -13,25 +13,45 @@ public class Event {
     private String description;
     private Boolean done;
     private User guest;
+    private String creator;
+    private String eventDate;
 
     //CONSTRUCTOR
     public Event() {
+        this.setDone(false);
+        this.setCategory("");
     }
     
     //CUSTOM METHODS
     public void creatEvent(){
         Scanner input = new Scanner(System.in);
         
+        System.out.println("Enter the name of the event creator: ");
+        this.setCreator(input.nextLine());
         System.out.print("Enter the event name: ");
         this.setName(input.nextLine());
         System.out.print("Enter the event adress: ");
         this.setAdress(input.nextLine());
         this.categorization();
         this.dateEvent();
-        
-        
+        System.out.print("Enter the event description: ");
+        this.setDescription(input.nextLine());
     }
-    private void dateEvent(){
+    public void editEvent(){
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter the name of the event creator: ");
+        this.setCreator(input.nextLine());
+        System.out.print("Enter the event name: ");
+        this.setName(input.nextLine());
+        System.out.print("Enter the event adress: ");
+        this.setAdress(input.nextLine());
+        this.categorization();
+        this.dateEvent();
+        System.out.print("Enter the event description: ");
+        this.setDescription(input.nextLine());
+    }
+    public void dateEvent(){
         Scanner input = new Scanner(System.in);
         Calendar date = Calendar.getInstance();
         System.out.println("Enter the event year : ");
@@ -46,10 +66,12 @@ public class Event {
         int min = input.nextInt();
         date.set(year, month,day,hour,min,0);
         this.setEventHour(date);
+        this.setEventDate("Evente Date: " + month + "/" + day + "/"+year + "\nHour: "+hour+"h"+min+"min");
+        
     }
-    private void categorization(){
+    public void categorization(){
         Scanner input = new Scanner(System.in);
-        while (this.getCategory().contentEquals(null)){
+        while (this.getCategory().equals("")){
             System.out.println("Inform the event category: \nParty\nConcert\nSport\nConference\nCultural");
             switch (input.nextLine()){
                 case "Party":
@@ -71,6 +93,10 @@ public class Event {
             }
         }
     }
+    public String eventStatus() {
+        System.out.println("------------STATUS------------");
+        return "Event: " + this.getName()+ "\nAdress: "+ this.getAdress()+"\nCategory: " + this.getCategory() + "\n"+ this.getEventDate()+"\nDescription: "+ this.getDescription();
+    }
     public void listEvents(){
         
     }
@@ -85,46 +111,59 @@ public class Event {
     }
     
     //GETTERS AND SETTERS
-    public String getName() {
+    private String getName() {
         return name;
     }
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
-    public String getAdress() {
+    private String getAdress() {
         return adress;
     }
-    public void setAdress(String adress) {
+    private void setAdress(String adress) {
         this.adress = adress;
     }
-    public String getCategory() {
+    private String getCategory() {
         return category;
     }
-    public void setCategory(String category) {
+    private void setCategory(String category) {
         this.category = category;
     }
-    public Calendar getEventHour() {
+    private Calendar getEventHour() {
         return eventHour;
     }
-    public void setEventHour(Calendar eventHour) {
+    private void setEventHour(Calendar eventHour) {
         this.eventHour = eventHour;
     }
-    public String getDescription() {
+    private String getDescription() {
         return description;
     }
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
-    public Boolean getDone() {
+    private Boolean getDone() {
         return done;
     }
-    public void setDone(Boolean done) {
+    private void setDone(Boolean done) {
         this.done = done;
     }
-    public User getGuest() {
+    private User getGuest() {
         return guest;
     }
-    public void setGuest(User guest) {
+    private void setGuest(User guest) {
         this.guest = guest;
     }
+    public String getCreator() {
+        return creator;
+    }
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+    public String getEventDate() {
+        return eventDate;
+    }
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+    
 }
