@@ -1,18 +1,19 @@
 package cityeventsproject;
 
-import model.Event;
-import model.User;
+import controller.UserController;
+import model.EventModel;
+import model.UserModel;
 
 public class CityEventsProject {
 
     public static void main(String[] args) {
-//        User eu = new User();
-//        eu.creatUser();
-//        eu.login();
+        UserController eu = new UserController();
+        eu.creatUser();
+        eu.login();
         
-        Event event1 = new Event();
-        event1.creatEvent();
-        System.out.println(event1.eventStatus());
+//        EventModel event1 = new EventModel();
+//        event1.creatEvent();
+//        System.out.println(event1.eventStatus());
     }
     
     

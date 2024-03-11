@@ -3,7 +3,7 @@ package model;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class Event {
+public class EventModel {
     
     //ATTRIBUTS
     private String name;
@@ -12,12 +12,12 @@ public class Event {
     private Calendar eventHour;
     private String description;
     private Boolean done;
-    private User guest;
+    private UserModel guest;
     private String creator;
     private String eventDate;
 
     //CONSTRUCTOR
-    public Event() {
+    public EventModel() {
         this.setDone(false);
         this.setCategory("");
     }
@@ -108,7 +108,7 @@ public class Event {
     }
     public void finishEvent(){
         Calendar userDate  = Calendar.getInstance();
-        userDate.getTime(System.in);
+        userDate.getTime();
         if(userDate.after(this.getEventHour())){
         this.setDone(true);
         }
@@ -151,10 +151,10 @@ public class Event {
     private void setDone(Boolean done) {
         this.done = done;
     }
-    private User getGuest() {
+    private UserModel getGuest() {
         return guest;
     }
-    private void setGuest(User guest) {
+    private void setGuest(UserModel guest) {
         this.guest = guest;
     }
     public String getCreator() {
