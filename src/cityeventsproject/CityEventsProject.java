@@ -7,13 +7,10 @@ import model.UserModel;
 public class CityEventsProject {
 
     public static void main(String[] args) {
-        UserController eu = new UserController();
-        eu.creatUser();
-        eu.login();
-        
-//        EventModel event1 = new EventModel();
-//        event1.creatEvent();
-//        System.out.println(event1.eventStatus());
+        UserModel userModel2 = new UserModel();
+        UserController userController2 = new UserController();
+        userController2.creatUserController(userModel2);
+        userController2.login(userModel2);
     }
     
     

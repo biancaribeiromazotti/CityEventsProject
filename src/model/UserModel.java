@@ -1,13 +1,10 @@
 package model;
 
-//LIBRARIES
-import java.util.Scanner;
-
 public class UserModel {
     
     //ATTRIBUTES
     private String name;
-    private String adress;
+    private String address;
     private String email;
     private String gender;
     private String password1;
@@ -15,53 +12,42 @@ public class UserModel {
     private int age;
     
     //CONSTRUCTOR
-    public UserModel(String name,String adress,String email,String gender,String password1,String password2,int  age){
+    public UserModel(){
+        
+    }
+    
+    //CUSTOM METHODS
+    public void creatUser(String name,String address,String email,String gender,String password1,String password2,int  age){
         this.setName(name);
-        this.setAdress(adress);
+        this.setAddress(address);
         this.setEmail(email);
         this.setGender(gender);
         this.setPassword1(password1);
         this.setPassword2(password2);
         this.setAge(age);
-        if(!this.initialPasswordVerification()){
-            throw new IllegalArgumentException("Incompatible passwords.");
-        }
-    }
+    }//ok
     
-    //CUSTOM METHODS
-    public void login(){
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the user name: ");
-        this.setName(input.nextLine());
-        System.out.print("Enter the password: ");
-        this.setPassword1(input.nextLine());
-        while(!this.getPassword1().equals(this.getPassword2())){
-            if(this.getPassword1().equals(this.getPassword2())){
-                //codigo para inserir o novo usuario no arquivo txt de usuarios
-                System.out.println("Successful login!");
-            }else{
-                Scanner input2 = new Scanner(System.in);
-                System.out.println("Incorrect password.");
-                System.out.print("Enter the password: ");
-                this.setPassword1(input2.nextLine());
-                if (this.getPassword1().equals(this.getPassword2())){
-                    System.out.println("Successful login!");
-                }else{
-                    System.out.println("Incompatible passwords.");
-                }
-            }
+    public boolean loginVerification(String email, String password){
+        if (this.getPassword2().equals(password) && this.getEmail().equals(email)){
+            return true;
+        }else{
+            return false;
         }
-    }
+    }//ok
+    
     public void confirmPresence(){
         
     }
+    
     public void listConfirmedEvents(){
         
     }
+    
     public void cancelPresence(){
         
     }
-    public boolean initialPasswordVerification(){
+    
+    public boolean passwordVerification(){
         if(this.getPassword1()==null || this.getPassword2()==null){
             return false;
         }else if(this.getPassword1().equals(this.getPassword2())){
@@ -69,48 +55,61 @@ public class UserModel {
         }else{
             return false;
         }
-    }
+    }//ok
     
     //GETTERS AND SETTERS
-    private String getName() {
+    public String getName() {
         return name;
     }
-    private void setName(String name) {
+    
+    public void setName(String name) {
         this.name = name;
     }
-    private String getAdress() {
-        return adress;
+    
+    public String getAddress() {
+        return address;
     }
-    private void setAdress(String adress) {
-        this.adress = adress;
+    
+    public void setAddress(String address) {
+        this.address = address;
     }
-    private String getEmail() {
+    
+    public String getEmail() {
         return email;
     }
-    private void setEmail(String email) {
+    
+    public void setEmail(String email) {
         this.email = email;
     }
-    private String getGender() {
+    
+    public String getGender() {
         return gender;
     }
-    private void setGender(String gender) {
+    
+    public void setGender(String gender) {
         this.gender = gender;
     }
-    private int getAge() {
+    
+    public int getAge() {
         return age;
     }
-    private void setAge(int age) {
+    
+    public void setAge(int age) {
         this.age = age;
     }
+    
     public String getPassword1() {
         return password1;
     }
+    
     public void setPassword1(String password1) {
         this.password1 = password1;
     }
+    
     public String getPassword2() {
         return password2;
     }
+    
     public void setPassword2(String password2) {
         this.password2 = password2;
     }

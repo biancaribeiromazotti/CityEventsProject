@@ -7,104 +7,89 @@ public class UserController {
     
     //ATTRIBUTES
     private String nameController;
-    private String adressController;
+    private String addressController;
     private String emailController;
     private String genderController;
-    private String password1Controller;
-    private String password2Controller;
+    private String passwordOneController;
+    private String passwordTwoController;
     private int ageController;
-    private UserModel userModel;
-    
-    
+    private UserModel userModel1;
     
     //CONSTRUCTOR
     public UserController() {
+        
     }
     
     //CUSTOM METHODS
-    public void creatUser(){
+    public void creatUserController(UserModel user){
         Scanner input = new Scanner(System.in);
         
         System.out.print("Enter the user name: ");
         this.setNameController(input.nextLine());
-        System.out.print("Enter the adress: ");
-        this.setAdressController(input.nextLine());
+        System.out.print("Enter the address: ");
+        this.setAddressController(input.nextLine());
         System.out.print("Enter the email: ");
         this.setEmailController(input.nextLine());
+        System.out.print("Enter the age: ");
+        this.setAgeController(Integer.parseInt(input.nextLine()));
         System.out.print("Enter the gender: ");
         this.setGenderController(input.nextLine());
-        System.out.print("Enter the age: ");
-        this.setAgeController(input.nextInt());
-        System.out.print("Enter the password: ");
-        this.setPassword1Controller(input.nextLine());
-        System.out.print("Confirm the password: ");
-        this.setPassword2Controller(input.nextLine());
-        userModel = new UserModel(this.getNameController(), this.getAdressController(),this.getEmailController(),this.getGenderController(),this.getPassword1Controller(), this.getPassword2Controller(),this.getAgeController());
-        this.passwordVerification();
-        }
-    public void passwordVerification(){
-        boolean validPassword=userModel.initialPasswordVerification();
-        if(!validPassword){
-            System.out.println("Incompatible passwords.");
-        }else{
-        Scanner input = new Scanner(System.in);
-            System.out.print("Enter the password: ");
-            userModel.setPassword1(input.nextLine());
-            this.setPassword1Controller(userModel.getPassword1());
-            System.out.print("Confirm the password: ");
-            userModel.setPassword2(input.nextLine());
-            this.setPassword2Controller(userModel.getPassword2());
-            validPassword = userModel.initialPasswordVerification();
-        }    
-    }
-    public void editUser(){
-        Scanner input = new Scanner(System.in);
         
-        System.out.print("Enter the user name: ");
-        this.setNameController(input.nextLine());
-        System.out.print("Enter the adress: ");
-        this.setAdressController(input.nextLine());
-        System.out.print("Enter the email: ");
-        this.setEmailController(input.nextLine());
-        System.out.print("Enter the gender: ");
-        this.setGenderController(input.nextLine());
-        System.out.print("Enter the age: ");
-        this.setAgeController(input.nextInt());
         System.out.print("Enter the password: ");
-        this.setPassword1Controller(input.nextLine());
+        this.setPasswordOneController(input.nextLine());
         System.out.print("Confirm the password: ");
-        this.setPassword2Controller(input.nextLine());
-        this.passwordVerification();
-    }
-    public void login(){
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the user name: ");
-        this.setNameController(input.nextLine());
-        System.out.print("Enter the password: ");
-        this.setPassword1Controller(input.nextLine());
-        while(!this.getPassword1Controller().equals(this.getPassword2Controller())){
-            if(this.getPassword1Controller().equals(this.getPassword2Controller())){
-                //codigo para inserir o novo usuario no arquivo txt de usuarios
-                System.out.println("Successful login!");
-            }else{
-                Scanner input2 = new Scanner(System.in);
-                System.out.println("Incorrect password.");
+        this.setPasswordTwoController(input.nextLine());
+        this.setUserModel1(user);
+        this.getUserModel1().creatUser(this.getNameController(), this.getAddressController(), this.getEmailController(), this.getGenderController(), this.getPasswordOneController(), this.getPasswordTwoController(), this.getAgeController());
+        this.passwordVerification(user);
+        System.out.println("Registration completed successfully.");
+        }//ok
+    
+    public void passwordVerification(UserModel user){
+        this.setUserModel1(user);
+        boolean validPassword=this.getUserModel1().passwordVerification();
+        while(!validPassword){
+            if(!validPassword){
+                System.out.println("Incompatible passwords.");
+                Scanner input = new Scanner(System.in);
                 System.out.print("Enter the password: ");
-                this.setPassword1Controller(input2.nextLine());
-                if (this.getPassword1Controller().equals(this.getPassword2Controller())){
-                    System.out.println("Successful login!");
-                }else{
-                    System.out.println("Incompatible passwords.");
-                }
+                this.getUserModel1().setPassword1(input.nextLine());
+                this.setPasswordOneController(this.getUserModel1().getPassword1());
+                System.out.print("Confirm the password: ");
+                this.getUserModel1().setPassword2(input.nextLine());
+                this.setPasswordTwoController(this.getUserModel1().getPassword2());
+                validPassword = this.getUserModel1().passwordVerification();
             }
         }
+    }//ok
+    
+    public void editUser(){
+
     }
+    
+    public void login(UserModel user){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the user email: ");
+        String email = input.nextLine();
+        System.out.print("Enter the password: ");
+        String password = input.nextLine();
+        
+        this.setUserModel1(user);
+        if(this.getUserModel1().loginVerification(email, password)){
+            System.out.println("Login Successful.");
+        }else{
+            System.out.println("Incorrect login or password");
+        }
+    }//ok
+    
     public void confirmPresence(){
         
     }
+    
     public void listConfirmedEvents(){
         
     }
+    
     public void cancelPresence(){
         
     }
@@ -113,43 +98,64 @@ public class UserController {
     public String getNameController() {
         return nameController;
     }
+    
     public void setNameController(String nameController) {
         this.nameController = nameController;
     }
-    public String getAdressController() {
-        return adressController;
+    
+    public String getAddressController() {
+        return addressController;
     }
-    public void setAdressController(String adressController) {
-        this.adressController = adressController;
+    
+    public void setAddressController(String addressController) {
+        this.addressController = addressController;
     }
+    
     public String getEmailController() {
         return emailController;
     }
+    
     public void setEmailController(String emailController) {
         this.emailController = emailController;
     }
+    
     public String getGenderController() {
         return genderController;
     }
+    
     public void setGenderController(String genderController) {
         this.genderController = genderController;
     }
-    public String getPassword1Controller() {
-        return password1Controller;
+    
+    public String getPasswordOneController() {
+        return passwordOneController;
     }
-    public void setPassword1Controller(String password1Controller) {
-        this.password1Controller = password1Controller;
+    
+    public void setPasswordOneController(String passwordOneController) {
+        this.passwordOneController = passwordOneController;
     }
-    public String getPassword2Controller() {
-        return password2Controller;
+    
+    public String getPasswordTwoController() {
+        return passwordTwoController;
     }
-    public void setPassword2Controller(String password2Controller) {
-        this.password2Controller = password2Controller;
+    
+    public void setPasswordTwoController(String passwordTwoController) {
+        this.passwordTwoController = passwordTwoController;
     }
+    
     public int getAgeController() {
         return ageController;
     }
+    
     public void setAgeController(int ageController) {
         this.ageController = ageController;
+    }
+    
+    public UserModel getUserModel1() {
+        return userModel1;
+    }
+    
+    public void setUserModel1(UserModel userModel1) {
+        this.userModel1 = userModel1;
     }
 }
