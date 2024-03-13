@@ -7,7 +7,7 @@ public class EventModel {
     
     //ATTRIBUTS
     private String name;
-    private String adress;
+    private String address;
     private String category;
     private Calendar eventHour;
     private String description;
@@ -23,149 +23,117 @@ public class EventModel {
     }
     
     //CUSTOM METHODS
-    public void creatEvent(){
+    public void creatEventModel(String creator,String eventName, String address, String description){
         Scanner input = new Scanner(System.in);
         
-        System.out.println("Enter the name of the event creator: ");
-        this.setCreator(input.nextLine());
-        System.out.print("Enter the event name: ");
-        this.setName(input.nextLine());
-        System.out.print("Enter the event adress: ");
-        this.setAdress(input.nextLine());
-        this.categorization();
-        this.dateEvent();
-        System.out.print("Enter the event description: ");
-        this.setDescription(input.nextLine());
-    }
-    public void editEvent(){
-        Scanner input = new Scanner(System.in);
-        
-        System.out.println("Enter the name of the event creator: ");
-        this.setCreator(input.nextLine());
-        System.out.print("Enter the event name: ");
-        this.setName(input.nextLine());
-        System.out.print("Enter the event adress: ");
-        this.setAdress(input.nextLine());
-        this.categorization();
-        this.dateEvent();
-        System.out.print("Enter the event description: ");
-        this.setDescription(input.nextLine());
-    }
-    private void dateEvent(){
-        Scanner input = new Scanner(System.in);
-        Calendar date = Calendar.getInstance();
-        System.out.println("Enter the event year : ");
-        int year = input.nextInt();
-        System.out.println("Enter the event month: ");
-        int month = input.nextInt();
-        System.out.println("Enter the event day: ");
-        int day = input.nextInt();
-        System.out.println("Enter the event hour: ");
-        int hour = input.nextInt();
-        System.out.println("Enter the event minute: ");
-        int min = input.nextInt();
-        date.set(year, month,day,hour,min,0);
-        this.setEventHour(date);
+        this.setCreator(creator);
+        this.setName(eventName);
+        this.setAddress(address);
+        this.setDescription(description);
+    }//ok
+    
+    public void dateEvent(int year, int month, int day,int  hour, int min){
         this.setEventDate("Evente Date: " + month + "/" + day + "/"+year + "\nHour: "+hour+"h"+min+"min");
-        
-    }
-    private void categorization(){
-        Scanner input = new Scanner(System.in);
-        while (this.getCategory().equals("")){
-            System.out.println("Inform the event category: \nParty\nConcert\nSport\nConference\nCultural");
-            switch (input.nextLine()){
-                case "Party":
-                    this.setCategory("Party");
-                    break;
-                case "Concert":
-                    this.setCategory("Concert");
-                    break;
-                case "Sport":
-                    this.setCategory("Sport");
-                    break;
-                case "Conference":
-                    this.setCategory("Conference");
-                    break;
-                case "Cutural":
-                    this.setCategory("Cutural");
-                    break;
-                default: System.out.println("Invalid Category");
-            }
-        }
-    }
+    }//ok
+    
+    public void categorization(String category){
+        this.setCategory(category);
+    }//ok
+    
     public String eventStatus() {
         System.out.println("------------STATUS------------");
-        return "Event: " + this.getName()+ "\nAdress: "+ this.getAdress()+"\nCategory: " + this.getCategory() + "\n"+ this.getEventDate()+"\nDescription: "+ this.getDescription();
-    }
+        return "Event: " + this.getName()+ "\nAddress: "+ this.getAddress()+"\nCategory: " + this.getCategory() + "\n"+ this.getEventDate()+"\nDescription: "+ this.getDescription();
+    }//ok
+    
     public void listEvents(){
         
     }
+    
     public void sendNotification(){
         
     }
+    
     public void orderEvents(){
         
     }
+    
     public void finishEvent(){
         Calendar userDate  = Calendar.getInstance();
         userDate.getTime();
         if(userDate.after(this.getEventHour())){
         this.setDone(true);
         }
-    }
+    }//ok
     
     //GETTERS AND SETTERS
     private String getName() {
         return name;
     }
+    
     private void setName(String name) {
         this.name = name;
     }
-    private String getAdress() {
-        return adress;
+    
+    private String getAddress() {
+        return address;
     }
-    private void setAdress(String adress) {
-        this.adress = adress;
+    
+    private void setAddress(String address) {
+        this.address = address;
     }
+    
     private String getCategory() {
         return category;
     }
+    
     private void setCategory(String category) {
         this.category = category;
     }
+    
     private Calendar getEventHour() {
         return eventHour;
     }
+    
     private void setEventHour(Calendar eventHour) {
         this.eventHour = eventHour;
     }
+    
     private String getDescription() {
         return description;
     }
+    
     private void setDescription(String description) {
         this.description = description;
     }
+    
     private Boolean getDone() {
         return done;
     }
+    
     private void setDone(Boolean done) {
         this.done = done;
     }
+    
     private UserModel getGuest() {
         return guest;
     }
+    
     private void setGuest(UserModel guest) {
         this.guest = guest;
     }
+    
     public String getCreator() {
         return creator;
     }
+    
     public void setCreator(String creator) {
         this.creator = creator;
     }
+    
     public String getEventDate() {
         return eventDate;
     }
+    
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }

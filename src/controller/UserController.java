@@ -49,7 +49,6 @@ public class UserController {
         this.setUserModel1(user);
         boolean validPassword=this.getUserModel1().passwordVerification();
         while(!validPassword){
-            if(!validPassword){
                 System.out.println("Incompatible passwords.");
                 Scanner input = new Scanner(System.in);
                 System.out.print("Enter the password: ");
@@ -59,7 +58,6 @@ public class UserController {
                 this.getUserModel1().setPassword2(input.nextLine());
                 this.setPasswordTwoController(this.getUserModel1().getPassword2());
                 validPassword = this.getUserModel1().passwordVerification();
-            }
         }
     }//ok
     
@@ -75,11 +73,16 @@ public class UserController {
         String password = input.nextLine();
         
         this.setUserModel1(user);
-        if(this.getUserModel1().loginVerification(email, password)){
-            System.out.println("Login Successful.");
-        }else{
-            System.out.println("Incorrect login or password");
-        }
+        boolean validPassLogin = this.getUserModel1().loginVerification(email, password);
+        while(!validPassLogin){
+                System.out.println("Incorrect login or password.");
+                System.out.print("Enter the user email: ");
+                email = input.nextLine();
+                System.out.print("Enter the password: ");
+                password = input.nextLine();
+                validPassLogin = this.getUserModel1().loginVerification(email, password);
+        }    
+        System.out.println("Login successful.");
     }//ok
     
     public void confirmPresence(){
