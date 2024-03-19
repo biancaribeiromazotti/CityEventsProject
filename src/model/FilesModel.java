@@ -2,7 +2,7 @@ package model;
 
 import java.io.*;
 
-public class Files {
+public class FilesModel {
 
     public static boolean writerFile (String path, String text){
         try {

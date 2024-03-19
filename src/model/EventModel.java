@@ -33,22 +33,19 @@ public class EventModel {
     }//ok
     
     public void dateEvent(int year, int month, int day,int  hour, int min){
-        this.setEventDate("Evente Date: " + month + "/" + day + "/"+year + "\nHour: "+hour+"h"+min+"min");
+        this.setEventDate(month + ";" + day + ";"+year + ";"+hour+";"+min);
     }//ok
     
     public void categorization(String category){
         this.setCategory(category);
     }//ok
     
-    public String eventStatus() {
-        System.out.println("------------STATUS------------");
-        return "Event: " + this.getName()+ "\nAddress: "+ this.getAddress()+"\nCategory: " + this.getCategory() + "\n"+ this.getEventDate()+"\nDescription: "+ this.getDescription();
-    }//ok
-    
     public void listEvents(){
         
     }
-    
+    public void saveEvent (){
+
+    }
     public void sendNotification(){
         
     }

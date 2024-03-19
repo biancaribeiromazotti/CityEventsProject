@@ -61,9 +61,9 @@ public class EventController {
         int min = input.nextInt();
         date.set(year, month,day,hour,min,0);
         this.setEventHour(date);
-        
         this.setEvent(event);
         this.getEvent().dateEvent(year, month, day, hour, min);
+        this.setEventDate(this.getEvent().getEventDate());
     }//ok
     
     private void categorization(EventModel event){
@@ -92,9 +92,10 @@ public class EventController {
         this.setEvent(event);
         this.getEvent().categorization(category);
     }//ok
-    
+
     public String eventStatus() {
-        return "EventController{" + "nameEvent=" + this.getNameEvent() + "; address=" + this.getAddress() + "; category=" + this.getCategory() + "; description=" + this.getDescription() + "; creator=" + this.getCreator() + "; eventDate=" + this.getEventDate() + "}";
+        String text =this.getNameEvent() + ";" + this.getAddress() + ";" + this.getCategory() + ";" + this.getDescription() + ";" + this.getCreator() + ";" + this.getEventDate() ;
+        return text;
     }//ok
     
     public void listEvents(){
