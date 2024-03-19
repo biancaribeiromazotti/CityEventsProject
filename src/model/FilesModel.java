@@ -3,11 +3,17 @@ package model;
 import java.io.*;
 
 public class FilesModel {
+    private String path;
+    public FilesModel(String path){
+        this.path = path;
+    }
 
-    public static boolean writerFile (String path, String text){
+
+    public boolean writerFile ( String text){
         try {
-            FileWriter file = new FileWriter(path);
-            PrintWriter writeFile = new PrintWriter(file);
+            FileWriter file = new FileWriter(this.path,true);
+            BufferedWriter buffer = new BufferedWriter(file);
+            PrintWriter writeFile = new PrintWriter(buffer);
             writeFile.println(text);
             writeFile.close();
             return true;
@@ -17,16 +23,16 @@ public class FilesModel {
         }
     }
 
-    public static String readerFile (String pathFile) {
+    public String readerFile () {
         String fileContent = "";
         try {
-            FileReader file = new FileReader(pathFile);
+            FileReader file = new FileReader(this.path);
             BufferedReader readerFile = new BufferedReader(file);
             String line = "";
             try {
                 line = readerFile.readLine();
                 while (line != null) {
-                    fileContent += line = "\n";
+                    fileContent += line + "\n";
                     line = readerFile.readLine();
                 }
                 file.close();

@@ -1,7 +1,11 @@
 package controller;
 
+import java.security.InvalidParameterException;
 import java.util.Scanner;
+
+import model.FilesModel;
 import model.UserModel;
+import repository.UserRepository;
 
 public class UserController {
     
@@ -21,45 +25,15 @@ public class UserController {
     }
     
     //CUSTOM METHODS
-    public void creatUserController(UserModel user){
-        Scanner input = new Scanner(System.in);
-        
-        System.out.print("Enter the user name: ");
-        this.setNameController(input.nextLine());
-        System.out.print("Enter the address: ");
-        this.setAddressController(input.nextLine());
-        System.out.print("Enter the email: ");
-        this.setEmailController(input.nextLine());
-        System.out.print("Enter the age: ");
-        this.setAgeController(Integer.parseInt(input.nextLine()));
-        System.out.print("Enter the gender: ");
-        this.setGenderController(input.nextLine());
-        
-        System.out.print("Enter the password: ");
-        this.setPasswordOneController(input.nextLine());
-        System.out.print("Confirm the password: ");
-        this.setPasswordTwoController(input.nextLine());
-        this.setUserModel1(user);
-        this.getUserModel1().creatUser(this.getNameController(), this.getAddressController(), this.getEmailController(), this.getGenderController(), this.getPasswordOneController(), this.getPasswordTwoController(), this.getAgeController());
-        this.passwordVerification(user);
-        System.out.println("Registration completed successfully.");
+    public UserModel creatUserController(String name, String address, String email, int age, String gender, String password1, String password2){
+        UserModel user = new UserModel(name, address, email, gender, password1, password2, age);
+        FilesModel file = new FilesModel("CityEvents_User.txt" );
+        UserRepository repository = new UserRepository(file);
+        repository.createUser(user);
+        return user;
         }//ok
     
-    public void passwordVerification(UserModel user){
-        this.setUserModel1(user);
-        boolean validPassword=this.getUserModel1().passwordVerification();
-        while(!validPassword){
-                System.out.println("Incompatible passwords.");
-                Scanner input = new Scanner(System.in);
-                System.out.print("Enter the password: ");
-                this.getUserModel1().setPassword1(input.nextLine());
-                this.setPasswordOneController(this.getUserModel1().getPassword1());
-                System.out.print("Confirm the password: ");
-                this.getUserModel1().setPassword2(input.nextLine());
-                this.setPasswordTwoController(this.getUserModel1().getPassword2());
-                validPassword = this.getUserModel1().passwordVerification();
-        }
-    }//ok
+
     
     public void editUser(){
 
@@ -153,11 +127,11 @@ public class UserController {
     public void setAgeController(int ageController) {
         this.ageController = ageController;
     }
-    
+
     public UserModel getUserModel1() {
         return userModel1;
     }
-    
+
     public void setUserModel1(UserModel userModel1) {
         this.userModel1 = userModel1;
     }

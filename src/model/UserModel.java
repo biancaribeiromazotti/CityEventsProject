@@ -1,5 +1,8 @@
 package model;
 
+import java.security.InvalidParameterException;
+import java.util.InvalidPropertiesFormatException;
+
 public class UserModel {
     
     //ATTRIBUTES
@@ -12,12 +15,7 @@ public class UserModel {
     private int age;
     
     //CONSTRUCTOR
-    public UserModel(){
-        
-    }
-    
-    //CUSTOM METHODS
-    public void creatUser(String name,String address,String email,String gender,String password1,String password2,int  age){
+    public UserModel(String name,String address,String email,String gender,String password1,String password2,int  age){
         this.setName(name);
         this.setAddress(address);
         this.setEmail(email);
@@ -25,7 +23,10 @@ public class UserModel {
         this.setPassword1(password1);
         this.setPassword2(password2);
         this.setAge(age);
-    }//ok
+
+    }
+    
+    //CUSTOM METHODS
     
     public boolean loginVerification(String email, String password){
         if (this.getPassword2().equals(password) && this.getEmail().equals(email)){
@@ -48,13 +49,7 @@ public class UserModel {
     }
     
     public boolean passwordVerification(){
-        if(this.getPassword1()==null || this.getPassword2()==null){
-            return false;
-        }else if(this.getPassword1().equals(this.getPassword2())){
-            return true;
-        }else{
-            return false;
-        }
+        return (this.getPassword1()!=null && this.getPassword2()!=null)&& this.getPassword1().equals(this.getPassword2());
     }//ok
     
     //GETTERS AND SETTERS
