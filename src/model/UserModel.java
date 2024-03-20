@@ -1,8 +1,4 @@
 package model;
-
-import java.security.InvalidParameterException;
-import java.util.InvalidPropertiesFormatException;
-
 public class UserModel {
     
     //ATTRIBUTES
@@ -23,18 +19,13 @@ public class UserModel {
         this.setPassword1(password1);
         this.setPassword2(password2);
         this.setAge(age);
-
     }
     
     //CUSTOM METHODS
     
-    public boolean loginVerification(String email, String password){
-        if (this.getPassword2().equals(password) && this.getEmail().equals(email)){
-            return true;
-        }else{
-            return false;
-        }
-    }//ok
+    public boolean loginVerification(String emailReaded, String passwordReaded,String email, String password ){
+        return (passwordReaded.equals(password) && emailReaded.equals(email));
+    }
     
     public void confirmPresence(){
         

@@ -9,8 +9,8 @@ public class HomeView {
         while (option!=3) {
             System.out.println("Escola a opcao desejada");
             System.out.println("1 - Login");
-            System.out.println("2 - Cadastrar");
-            System.out.println("3 - Encerrar");
+            System.out.println("2 - Register");
+            System.out.println("3 - Close");
             Scanner input = new Scanner(System.in);
             option = input.nextInt();
 

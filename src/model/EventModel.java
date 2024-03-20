@@ -5,37 +5,26 @@ import java.util.Scanner;
 
 public class EventModel {
     
-    //ATTRIBUTS
-    private String name;
+    //ATTRIBUTES
+    private String nameEvent;
     private String address;
     private String category;
-    private Calendar eventHour;
     private String description;
     private Boolean done;
-    private UserModel guest;
     private String creator;
     private String eventDate;
 
     //CONSTRUCTOR
-    public EventModel() {
+    public EventModel(String name, String address, String description,String category, int year, int month, int day, int hour, int min ) {
+        this.setNameEvent(name);
+        this.setAddress(address);
+        this.setDescription(description);
+        this.setCategory(category);
+        this.setEventDate(year+";"+month+";"+day+";"+hour+";"+min);
         this.setDone(false);
-        this.setCategory("");
     }
     
     //CUSTOM METHODS
-    public void creatEventModel(String creator,String eventName, String address, String description){
-        Scanner input = new Scanner(System.in);
-        
-        this.setCreator(creator);
-        this.setName(eventName);
-        this.setAddress(address);
-        this.setDescription(description);
-    }//ok
-    
-    public void dateEvent(int year, int month, int day,int  hour, int min){
-        this.setEventDate(month + ";" + day + ";"+year + ";"+hour+";"+min);
-    }//ok
-    
     public void categorization(String category){
         this.setCategory(category);
     }//ok
@@ -54,71 +43,47 @@ public class EventModel {
         
     }
     
-    public void finishEvent(){
-        Calendar userDate  = Calendar.getInstance();
-        userDate.getTime();
-        if(userDate.after(this.getEventHour())){
-        this.setDone(true);
-        }
-    }//ok
-    
     //GETTERS AND SETTERS
-    private String getName() {
-        return name;
+    public String getNameEvent() {
+        return nameEvent;
     }
     
-    private void setName(String name) {
-        this.name = name;
+    public void setNameEvent(String nameEvent) {
+        this.nameEvent = nameEvent;
     }
     
-    private String getAddress() {
+    public String getAddress() {
         return address;
     }
     
-    private void setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
     
-    private String getCategory() {
+    public String getCategory() {
         return category;
     }
     
-    private void setCategory(String category) {
+    public void setCategory(String category) {
         this.category = category;
     }
     
-    private Calendar getEventHour() {
-        return eventHour;
-    }
-    
-    private void setEventHour(Calendar eventHour) {
-        this.eventHour = eventHour;
-    }
-    
-    private String getDescription() {
+    public String getDescription() {
         return description;
     }
     
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     
-    private Boolean getDone() {
+    public Boolean getDone() {
         return done;
     }
     
-    private void setDone(Boolean done) {
+    public void setDone(Boolean done) {
         this.done = done;
     }
-    
-    private UserModel getGuest() {
-        return guest;
-    }
-    
-    private void setGuest(UserModel guest) {
-        this.guest = guest;
-    }
-    
+
     public String getCreator() {
         return creator;
     }

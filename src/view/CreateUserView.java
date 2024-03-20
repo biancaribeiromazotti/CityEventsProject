@@ -2,7 +2,6 @@ package view;
 
 import controller.UserController;
 import model.UserModel;
-
 import java.util.Scanner;
 
 public class CreateUserView {
