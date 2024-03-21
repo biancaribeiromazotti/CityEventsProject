@@ -1,6 +1,8 @@
 package view;
 
 import controller.EventController;
+import model.FilesModel;
+
 import java.util.Scanner;
 
     public class CreateEventView {
@@ -24,8 +26,14 @@ import java.util.Scanner;
             System.out.println("Enter the event minute: ");
             int min = input.nextInt();
 
+            FilesModel file = new FilesModel("C:\\Users\\bianc\\Documents\\TECNOLOGIA\\Meus Projetos\\Repositórios\\CityEventsProject\\CityEvents_User.txt");
+            String fileContent = file.readerFile();
+            String[] fileLines=fileContent.split(";");
+
+            String creator= fileLines[0];
+
             EventController event = new EventController();
-            event.creatEventController(name,address, description,category,year,month,day,hour,min);
+            event.creatEventController(creator, name,address, description,category,year,month,day,hour,min);
 
             System.out.println("Event created successfully.");
         }
@@ -47,8 +55,8 @@ import java.util.Scanner;
                     case "Conference":
                         category = "Conference";
                         break;
-                    case "Cutural":
-                        category = "Cutural";
+                    case "Cultural":
+                        category = "Cultural";
                         break;
                     default: System.out.println("Invalid Category");
                 }

@@ -12,18 +12,36 @@ public class EventModel {
     private String eventDate;
 
     //CONSTRUCTOR
-    public EventModel(String name, String address, String description,String category, int year, int month, int day, int hour, int min ) {
+    public EventModel(String creator, String name, String address, String description,String category, int year, int month, int day, int hour, int min ) {
         this.setNameEvent(name);
         this.setAddress(address);
         this.setDescription(description);
         this.setCategory(category);
-        this.setEventDate(year+";"+month+";"+day+";"+hour+";"+min);
+        this.setEventDate(year+";"+month+";"+day+";"+hour+";"+min+";");
         this.setDone(false);
+        this.setCreator(creator);
     }
     
     //CUSTOM METHODS
     public void listEvents(){
-        
+
+        FilesModel file = new FilesModel("C:\\Users\\bianc\\Documents\\TECNOLOGIA\\Meus Projetos\\Repositórios\\CityEventsProject\\CityEvents_Event.txt");
+        String text = file.readerFile();
+        String creator = text.split(";")[0];
+        String name = text.split(";")[1];
+        String address = text.split(";")[2];
+        String category = text.split(";")[3];
+        String description = text.split(";")[4];
+        String year = text.split(";")[5];
+        String month = text.split(";")[6];
+        String day = text.split(";")[7];
+        String hour = text.split(";")[8];
+        String min = text.split(";")[9];
+        if (text.isEmpty()){
+            System.out.println("Error");
+        }else {
+            System.out.println("Creator: " + creator + "\nName: " + name + "\nAddress: " + address + "\nCategory: " + category + "\nDescription: " + description + "\nDate" + month + "/" + day + "/" + year + " - " + hour + "h" + min + "min." );
+        }
     }
 
     public void sendNotification(){

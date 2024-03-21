@@ -9,7 +9,7 @@ public class EventRepository {
         this.filesModel = file;
     }
     public void createEvent(EventModel event){
-        String text = event.getNameEvent()+";"+event.getAddress()+";"+event.getCategory()+";"+event.getDescription()+";"+event.getCreator()+";"+event.getEventDate();
+        String text = event.getCreator()+";"+event.getNameEvent()+";"+event.getAddress()+";"+event.getCategory()+";"+event.getDescription()+";"+event.getEventDate();
         this.filesModel.writerFile(text);
     }
 }

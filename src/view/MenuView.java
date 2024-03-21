@@ -22,7 +22,7 @@ public class MenuView {
                     event.listEvents();
                     break;
                 case 2:
-
+                    CreateEventView.createEventView();
                     break;
             }
         }
