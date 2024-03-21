@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Calendar;
-import java.util.Scanner;
-
 public class EventModel {
     
     //ATTRIBUTES
@@ -25,16 +22,10 @@ public class EventModel {
     }
     
     //CUSTOM METHODS
-    public void categorization(String category){
-        this.setCategory(category);
-    }//ok
-    
     public void listEvents(){
         
     }
-    public void saveEvent (){
 
-    }
     public void sendNotification(){
         
     }

@@ -1,11 +1,10 @@
 package controller;
 
-import java.security.InvalidParameterException;
-import java.util.Scanner;
-
 import model.FilesModel;
 import model.UserModel;
 import repository.UserRepository;
+
+import java.util.Scanner;
 
 public class UserController {
 
@@ -22,4 +21,16 @@ public class UserController {
         repository.createUser(user);
         return user;
     }//ok
+    public static void loginVerification(String email, String password){
+        String emailReaded="aqui vai o codigo de leitura do email cadastrado";
+        String passwordReaded="aqui vai o codigo de leitura da senha cadastrada";
+        while((passwordReaded.equals(password) && emailReaded.equals(email))){
+            Scanner input = new Scanner(System.in);
+            System.out.println("Incorrect login or password.");
+            System.out.print("Enter the user email: ");
+            email = input.nextLine();
+            System.out.print("Enter the password: ");
+            password = input.nextLine();
+        }
+    }
 }
