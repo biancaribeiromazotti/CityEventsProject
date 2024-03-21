@@ -22,15 +22,26 @@ public class UserController {
         return user;
     }//ok
     public static void loginVerification(String email, String password){
-        String emailReaded="aqui vai o codigo de leitura do email cadastrado";
-        String passwordReaded="aqui vai o codigo de leitura da senha cadastrada";
-        while((passwordReaded.equals(password) && emailReaded.equals(email))){
+        FilesModel file = new FilesModel("C:\\Users\\bianc\\Documents\\TECNOLOGIA\\Meus Projetos\\Repositórios\\CityEventsProject\\CityEvents_User.txt");
+        String fileContent = file.readerFile();
+        String[] fileLines=fileContent.split(";");
+
+        String emailReaded= fileLines[1];
+        String passwordReaded= fileLines[5];
+
+        String email1 = email;
+        String password1 = password;
+
+        while(!((password1.trim().equals(passwordReaded.trim()) && email1.trim().equals(emailReaded.trim())))){
+
             Scanner input = new Scanner(System.in);
-            System.out.println("Incorrect login or password.");
+            System.out.println("Incorrect login or password.\n");
             System.out.print("Enter the user email: ");
-            email = input.nextLine();
+            email1 = input.nextLine();
             System.out.print("Enter the password: ");
-            password = input.nextLine();
+            password1 = input.nextLine();
+            System.out.println("emailReaded: " + emailReaded + ". PassReaded: " + passwordReaded + "email: " + email1 + ". Pass: " + password1);
         }
+        System.out.println("Login Successfully.\n");
     }
 }
