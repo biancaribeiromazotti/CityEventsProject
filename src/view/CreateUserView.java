@@ -25,7 +25,7 @@ public class CreateUserView {
         String password2 = input.nextLine();
 
         UserController userController = new UserController();
-        UserModel user = userController.creatUserController(name,address, email, age, gender, password1, password2);
+        UserModel user = userController.createUserController(name,address, email, age, gender, password1, password2);
 
         passwordVerification(user);
 

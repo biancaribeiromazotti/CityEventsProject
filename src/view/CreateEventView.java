@@ -3,6 +3,8 @@ package view;
 import controller.EventController;
 import model.FilesModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
     public class CreateEventView {
@@ -25,41 +27,24 @@ import java.util.Scanner;
             int hour = input.nextInt();
             System.out.println("Enter the event minute: ");
             int min = input.nextInt();
-
-            FilesModel file = new FilesModel("C:\\Users\\bianc\\Documents\\TECNOLOGIA\\Meus Projetos\\Repositórios\\CityEventsProject\\CityEvents_User.txt");
-            String fileContent = file.readerFile();
-            String[] fileLines=fileContent.split(";");
-
-            String creator= fileLines[0];
-
             EventController event = new EventController();
+            String creator = event.creator();
             event.creatEventController(creator, name,address, description,category,year,month,day,hour,min);
-
             System.out.println("Event created successfully.");
         }
         private static String categorization(){
             Scanner input = new Scanner(System.in);
-            String category="";
-            while (category.isEmpty()){
-                System.out.println("Inform the event category: \nParty\nConcert\nSport\nConference\nCultural");
-                switch (input.nextLine()){
-                    case "Party":
-                        category="Party";
-                        break;
-                    case "Concert":
-                        category="Concert";
-                        break;
-                    case "Sport":
-                        category="Sport";
-                        break;
-                    case "Conference":
-                        category = "Conference";
-                        break;
-                    case "Cultural":
-                        category = "Cultural";
-                        break;
-                    default: System.out.println("Invalid Category");
-                }
+            List<String> categories = new ArrayList<String>(4);
+            categories.add("Party");
+            categories.add("Concert");
+            categories.add("Sport");
+            categories.add("Conference");
+            categories.add("Cultural");
+            System.out.println("Inform the event category: \nParty\nConcert\nSport\nConference\nCultural");
+            String category = input.nextLine();
+            while (!categories.contains(category)) {
+                System.out.println("Invalid Category! Inform the event category: \nParty\nConcert\nSport\nConference\nCultural");
+                category = input.nextLine();
             }
             return category;
         }//ok

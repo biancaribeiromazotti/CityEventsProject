@@ -13,7 +13,19 @@ public class LoginView {
         String email = input.nextLine();
         System.out.print("Enter the password: ");
         String password = input.nextLine();
-        UserController.loginVerification(email, password);
+        loginVerification(email, password);
         loginOn = true;
     }
+    public static void loginVerification(String email, String password){
+        while(!UserController.loginVerification(email,password)){
+                Scanner input = new Scanner(System.in);
+                System.out.println("Incorrect login or password.\n");
+                System.out.print("Enter the user email: ");
+                email = input.nextLine();
+                System.out.print("Enter the password: ");
+                password = input.nextLine();
+        }
+        System.out.println("Login Successfully.\n");
+    }
+
 }

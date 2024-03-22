@@ -24,8 +24,8 @@ public class EventModel {
     
     //CUSTOM METHODS
     public void listEvents(){
-
-        FilesModel file = new FilesModel("C:\\Users\\bianc\\Documents\\TECNOLOGIA\\Meus Projetos\\Repositórios\\CityEventsProject\\CityEvents_Event.txt");
+        String userDirectoryPath = System.getProperty("user.dir")+"/CityEvents_Event.txt";
+        FilesModel file = new FilesModel(userDirectoryPath);
         String text = file.readerFile();
         String creator = text.split(";")[0];
         String name = text.split(";")[1];
@@ -40,7 +40,7 @@ public class EventModel {
         if (text.isEmpty()){
             System.out.println("Error");
         }else {
-            System.out.println("Creator: " + creator + "\nName: " + name + "\nAddress: " + address + "\nCategory: " + category + "\nDescription: " + description + "\nDate" + month + "/" + day + "/" + year + " - " + hour + "h" + min + "min." );
+            System.out.println("Creator: " + creator + "\nName: " + name + "\nAddress: " + address + "\nCategory: " + category + "\nDescription: " + description + "\nDate: " + month + "/" + day + "/" + year + " - " + hour + "h" + min + "min." );
         }
     }
 
