@@ -30,7 +30,6 @@ public class EventController {
         String[] fileLines=fileContent.split(";");
         System.out.println("The event creator is: "+fileLines[1]);
         return fileLines[0];
-
     }
     public void listEvents (){
         EventModel event = new EventModel(null,null,null,null,null,0,0,0,0,0);
