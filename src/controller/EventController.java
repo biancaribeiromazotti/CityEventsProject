@@ -35,4 +35,6 @@ public class EventController {
         EventModel event = new EventModel(null,null,null,null,null,0,0,0,0,0);
         event.listEvents();
     }
+
+
 }

@@ -23,25 +23,32 @@ public class EventModel {
     }
     
     //CUSTOM METHODS
-    public void listEvents(){
-        String userDirectoryPath = System.getProperty("user.dir")+"/CityEvents_Event.txt";
+    public void listEvents() {
+        String userDirectoryPath = System.getProperty("user.dir") + "/CityEvents_Event.txt";
         FilesModel file = new FilesModel(userDirectoryPath);
         String text = file.readerFile();
-        String creator = text.split(";")[0];
-        String name = text.split(";")[1];
-        String address = text.split(";")[2];
-        String category = text.split(";")[3];
-        String description = text.split(";")[4];
-        String year = text.split(";")[5];
-        String month = text.split(";")[6];
-        String day = text.split(";")[7];
-        String hour = text.split(";")[8];
-        String min = text.split(";")[9];
-        if (text.isEmpty()){
-            System.out.println("Error");
-        }else {
-            System.out.println("Creator: " + creator + "\nName: " + name + "\nAddress: " + address + "\nCategory: " + category + "\nDescription: " + description + "\nDate: " + month + "/" + day + "/" + year + " - " + hour + "h" + min + "min." );
+        String[] events = text.split("\n");
+
+        for (String event : events) {
+            if (!event.isEmpty()) { // Verifica se a linha não está vazia
+                String[] eventDetails = event.split(";");
+                String creator = eventDetails[0];
+                String name = eventDetails[1];
+                String address = eventDetails[2];
+                String category = eventDetails[3];
+                String description = eventDetails[4];
+                String year = eventDetails[5];
+                String month = eventDetails[6];
+                String day = eventDetails[7];
+                String hour = eventDetails[8];
+                String min = eventDetails[9];
+
+                System.out.println("Creator: " + creator + "\nName: " + name + "\nAddress: " + address + "\nCategory: " + category + "\nDescription: " + description + "\nDate: " + month + "/" + day + "/" + year + " - " + hour + "h" + min + "min.");
+            } else {
+                System.out.println("Error: Empty event");
+            }
         }
+
     }
 
     public void sendNotification(){

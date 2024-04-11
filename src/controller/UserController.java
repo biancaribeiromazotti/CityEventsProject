@@ -31,4 +31,7 @@ public class UserController {
         String passwordRead= fileLines[5];
         return ((password.trim().equals(passwordRead.trim()) && email.trim().equals(emailRead.trim())));
     }
+    public void confirmPresence(String nameEvent){
+
+    }
 }
